@@ -752,29 +752,54 @@
 <script>
 import { createApiClient } from "@mfe-sols/data-access";
 import { getSharedValue, setSharedValue, subscribeSharedValue } from "@mfe-sols/contracts";
-import {
-  createToast,
-  defineDesignSystem,
-  ensureTokens,
-  initAutocomplete,
-  initDatagrid,
-  mountEditor,
-  initDateRangeDropdown,
-  initDateRangeCalendar,
-  initDateTimeDropdown,
-  initDatepicker,
-  initDatepickerDropdown,
-  initDialog,
-  initDropdown,
-  initRangeSlider,
-  initSelectMenu,
-  initSlider,
-  initTabs,
-  initTooltip,
-  initTreeView,
-  sanitizeInlineHtml,
-} from "@mfe-sols/ui-kit";
+import * as UiKit from "@mfe-sols/ui-kit";
 import { getStoredLocale, setLocale, t } from "@mfe-sols/i18n";
+
+const defineDesignSystem =
+  typeof UiKit.defineDesignSystem === "function" ? UiKit.defineDesignSystem : () => undefined;
+const ensureTokens =
+  typeof UiKit.ensureTokens === "function" ? UiKit.ensureTokens : () => undefined;
+const createToast =
+  typeof UiKit.createToast === "function" ? UiKit.createToast : () => undefined;
+const initAutocomplete =
+  typeof UiKit.initAutocomplete === "function" ? UiKit.initAutocomplete : () => undefined;
+const initDatagrid =
+  typeof UiKit.initDatagrid === "function" ? UiKit.initDatagrid : () => undefined;
+const mountEditor =
+  typeof UiKit.mountEditor === "function" ? UiKit.mountEditor : () => undefined;
+const initDateRangeDropdown =
+  typeof UiKit.initDateRangeDropdown === "function" ? UiKit.initDateRangeDropdown : () => undefined;
+const initDateRangeCalendar =
+  typeof UiKit.initDateRangeCalendar === "function" ? UiKit.initDateRangeCalendar : () => undefined;
+const initDateTimeDropdown =
+  typeof UiKit.initDateTimeDropdown === "function" ? UiKit.initDateTimeDropdown : () => undefined;
+const initDatepicker =
+  typeof UiKit.initDatepicker === "function" ? UiKit.initDatepicker : () => undefined;
+const initDatepickerDropdown =
+  typeof UiKit.initDatepickerDropdown === "function" ? UiKit.initDatepickerDropdown : () => undefined;
+const initDialog =
+  typeof UiKit.initDialog === "function" ? UiKit.initDialog : () => undefined;
+const initDropdown =
+  typeof UiKit.initDropdown === "function" ? UiKit.initDropdown : () => undefined;
+const initRangeSlider =
+  typeof UiKit.initRangeSlider === "function" ? UiKit.initRangeSlider : () => undefined;
+const initSelectMenu =
+  typeof UiKit.initSelectMenu === "function" ? UiKit.initSelectMenu : () => undefined;
+const initSlider =
+  typeof UiKit.initSlider === "function" ? UiKit.initSlider : () => undefined;
+const initTabs =
+  typeof UiKit.initTabs === "function" ? UiKit.initTabs : () => undefined;
+const initTooltip =
+  typeof UiKit.initTooltip === "function" ? UiKit.initTooltip : () => undefined;
+const initTreeView =
+  typeof UiKit.initTreeView === "function" ? UiKit.initTreeView : () => undefined;
+const sanitizeInlineHtml =
+  typeof UiKit.sanitizeInlineHtml === "function"
+    ? UiKit.sanitizeInlineHtml
+    : (value) =>
+        String(value ?? "")
+          .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
+          .replace(/\son\w+="[^"]*"/gi, "");
 
 export default {
   data() {

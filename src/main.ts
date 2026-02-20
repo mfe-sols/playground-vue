@@ -1,13 +1,17 @@
 import { createApp, h } from "vue";
 import singleSpaVue from "single-spa-vue";
 import App from "./App.vue";
-import {
-  defineDesignSystem,
-  ensureTokens,
-  ensureThemeToggle,
-  initThemeMode,
-} from "@mfe-sols/ui-kit";
+import * as UiKit from "@mfe-sols/ui-kit";
 import { initMfeErrorReporter } from "./mfe-error-reporter";
+
+const defineDesignSystem =
+  typeof UiKit.defineDesignSystem === "function" ? UiKit.defineDesignSystem : () => undefined;
+const ensureTokens =
+  typeof UiKit.ensureTokens === "function" ? UiKit.ensureTokens : () => undefined;
+const ensureThemeToggle =
+  typeof UiKit.ensureThemeToggle === "function" ? UiKit.ensureThemeToggle : () => null;
+const initThemeMode =
+  typeof UiKit.initThemeMode === "function" ? UiKit.initThemeMode : () => undefined;
 
 const isStandalone = !(window as any).singleSpaNavigate;
 defineDesignSystem({ tailwind: true });

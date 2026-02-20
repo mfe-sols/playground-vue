@@ -10,7 +10,7 @@
     "start": "npm run serve",
     "start:standalone": "npm run serve",
     "serve": "STANDALONE_SINGLE_SPA=true vue-cli-service serve --port 9006",
-    "build": "vue-cli-service build"
+    "build": "STANDALONE_SINGLE_SPA=true vue-cli-service build"
   },
   "dependencies": {
     "@mfe-sols/auth": "^0.1.0",

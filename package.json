@@ -2,9 +2,13 @@
   "name": "@org/playground-vue",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@10.9.0",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
-    "start": "pnpm run serve",
-    "start:standalone": "pnpm run serve",
+    "start": "npm run serve",
+    "start:standalone": "npm run serve",
     "serve": "STANDALONE_SINGLE_SPA=true vue-cli-service serve --port 9006",
     "build": "vue-cli-service build"
   },

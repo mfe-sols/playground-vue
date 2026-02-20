@@ -1,7 +1,7 @@
 {
-  "buildCommand": "pnpm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "GITHUB_TOKEN=$NODE_AUTH_TOKEN pnpm install --no-frozen-lockfile",
+  "installCommand": "npm install",
   "headers": [
     {
       "source": "/assets/(.*)\\\\.[0-9a-fA-F]{8,}\\\\.(.*)",

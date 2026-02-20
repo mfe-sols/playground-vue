@@ -1,7 +1,7 @@
 {
-  "buildCommand": "corepack enable && corepack prepare pnpm@9.15.4 --activate && pnpm build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "corepack enable && corepack prepare pnpm@9.15.4 --activate && pnpm install --no-frozen-lockfile",
+  "installCommand": "npm install",
   "headers": [
     {
       "source": "/assets/(.*)\\\\.[0-9a-fA-F]{8,}\\\\.(.*)",

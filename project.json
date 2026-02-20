@@ -1,0 +1,24 @@
+{
+  "name": "mfe-playground-vue",
+  "projectType": "application",
+  "root": "apps/mfe-playground-vue",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/mfe-playground-vue",
+        "command": "pnpm start"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/mfe-playground-vue",
+        "command": "pnpm build"
+      },
+      "outputs": [
+        "{workspaceRoot}/apps/mfe-playground-vue/dist"
+      ]
+    }
+  }
+}

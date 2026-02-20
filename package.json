@@ -1,0 +1,32 @@
+{
+  "name": "@org/playground-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "pnpm run serve",
+    "start:standalone": "pnpm run serve",
+    "serve": "STANDALONE_SINGLE_SPA=true vue-cli-service serve --port 9006",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@mfe-sols/auth": "^0.1.0",
+    "@mfe-sols/contracts": "^0.1.0",
+    "@mfe-sols/data-access": "^0.1.0",
+    "@mfe-sols/i18n": "^0.1.1",
+    "@mfe-sols/ui-kit": "^0.1.5",
+    "single-spa": "^5.9.3",
+    "single-spa-vue": "^3.0.1",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "vue-cli-plugin-single-spa": "~4.0.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-template-compiler": "^2.7.16",
+    "typescript": "^5.9.3"
+  }
+}

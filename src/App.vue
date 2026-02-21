@@ -752,54 +752,29 @@
 <script>
 import { createApiClient } from "@mfe-sols/data-access";
 import { getSharedValue, setSharedValue, subscribeSharedValue } from "@mfe-sols/contracts";
-import * as UiKit from "@mfe-sols/ui-kit";
+import {
+  createToast,
+  defineDesignSystem,
+  ensureTokens,
+  initAutocomplete,
+  initDatagrid,
+  mountEditor,
+  initDateRangeDropdown,
+  initDateRangeCalendar,
+  initDateTimeDropdown,
+  initDatepicker,
+  initDatepickerDropdown,
+  initDialog,
+  initDropdown,
+  initRangeSlider,
+  initSelectMenu,
+  initSlider,
+  initTabs,
+  initTooltip,
+  initTreeView,
+  sanitizeInlineHtml,
+} from "@mfe-sols/ui-kit";
 import { getStoredLocale, setLocale, t } from "@mfe-sols/i18n";
-
-const defineDesignSystem =
-  typeof UiKit.defineDesignSystem === "function" ? UiKit.defineDesignSystem : () => undefined;
-const ensureTokens =
-  typeof UiKit.ensureTokens === "function" ? UiKit.ensureTokens : () => undefined;
-const createToast =
-  typeof UiKit.createToast === "function" ? UiKit.createToast : () => undefined;
-const initAutocomplete =
-  typeof UiKit.initAutocomplete === "function" ? UiKit.initAutocomplete : () => undefined;
-const initDatagrid =
-  typeof UiKit.initDatagrid === "function" ? UiKit.initDatagrid : () => undefined;
-const mountEditor =
-  typeof UiKit.mountEditor === "function" ? UiKit.mountEditor : () => undefined;
-const initDateRangeDropdown =
-  typeof UiKit.initDateRangeDropdown === "function" ? UiKit.initDateRangeDropdown : () => undefined;
-const initDateRangeCalendar =
-  typeof UiKit.initDateRangeCalendar === "function" ? UiKit.initDateRangeCalendar : () => undefined;
-const initDateTimeDropdown =
-  typeof UiKit.initDateTimeDropdown === "function" ? UiKit.initDateTimeDropdown : () => undefined;
-const initDatepicker =
-  typeof UiKit.initDatepicker === "function" ? UiKit.initDatepicker : () => undefined;
-const initDatepickerDropdown =
-  typeof UiKit.initDatepickerDropdown === "function" ? UiKit.initDatepickerDropdown : () => undefined;
-const initDialog =
-  typeof UiKit.initDialog === "function" ? UiKit.initDialog : () => undefined;
-const initDropdown =
-  typeof UiKit.initDropdown === "function" ? UiKit.initDropdown : () => undefined;
-const initRangeSlider =
-  typeof UiKit.initRangeSlider === "function" ? UiKit.initRangeSlider : () => undefined;
-const initSelectMenu =
-  typeof UiKit.initSelectMenu === "function" ? UiKit.initSelectMenu : () => undefined;
-const initSlider =
-  typeof UiKit.initSlider === "function" ? UiKit.initSlider : () => undefined;
-const initTabs =
-  typeof UiKit.initTabs === "function" ? UiKit.initTabs : () => undefined;
-const initTooltip =
-  typeof UiKit.initTooltip === "function" ? UiKit.initTooltip : () => undefined;
-const initTreeView =
-  typeof UiKit.initTreeView === "function" ? UiKit.initTreeView : () => undefined;
-const sanitizeInlineHtml =
-  typeof UiKit.sanitizeInlineHtml === "function"
-    ? UiKit.sanitizeInlineHtml
-    : (value) =>
-        String(value ?? "")
-          .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-          .replace(/\son\w+="[^"]*"/gi, "");
 
 export default {
   data() {
@@ -1487,6 +1462,30 @@ export default {
   flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .mfe-tree .ds-tree__item {
+    grid-template-columns: 22px 24px minmax(0, 1fr);
+    padding: 8px 9px;
+    gap: 8px;
+  }
+
+  .mfe-tree__meta {
+    font-size: 11px;
+  }
+
+  .mfe-tree__pill {
+    display: none;
+  }
+
+  .mfe-tree .ds-tree__children > .ds-tree__item + .ds-tree__item {
+    margin-top: 8px;
+  }
+
+  .mfe-tree > .ds-tree__item > .ds-tree__children > .ds-tree__item + .ds-tree__item {
+    margin-top: 10px;
+  }
+}
+
 .ds-inline-edit {
   position: relative;
   border-radius: var(--radius-md);
@@ -1516,29 +1515,5 @@ export default {
 
 .ds-inline-editor__textarea {
   min-height: 96px;
-}
-
-@media (max-width: 768px) {
-  .mfe-tree .ds-tree__item {
-    grid-template-columns: 22px 24px minmax(0, 1fr);
-    padding: 8px 9px;
-    gap: 8px;
-  }
-
-  .mfe-tree__meta {
-    font-size: 11px;
-  }
-
-  .mfe-tree__pill {
-    display: none;
-  }
-
-  .mfe-tree .ds-tree__children > .ds-tree__item + .ds-tree__item {
-    margin-top: 8px;
-  }
-
-  .mfe-tree > .ds-tree__item > .ds-tree__children > .ds-tree__item + .ds-tree__item {
-    margin-top: 10px;
-  }
 }
 </style>

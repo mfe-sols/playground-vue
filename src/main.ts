@@ -19,6 +19,7 @@ ensureTokens();
 
 const reporter = initMfeErrorReporter("@org/playground-vue");
 const MODULE_NAME = "@org/playground-vue";
+const THEME_STORAGE_KEY = "ds-theme";
 
 const isLocalHost = (value?: string | null) =>
   value === "localhost" || value === "127.0.0.1";
@@ -73,20 +74,39 @@ const createVueApp: typeof createApp = (...args) => {
   return app;
 };
 
+const resolveMountTarget = (props?: Record<string, unknown>) => {
+  const byProps = (props as any)?.domElement;
+  if (byProps instanceof HTMLElement) return byProps;
+
+  const appRoot = document.getElementById("app");
+  if (appRoot instanceof HTMLElement) return appRoot;
+
+  const singleSpaRoot = document.getElementById(`single-spa-application:${MODULE_NAME}`);
+  if (singleSpaRoot instanceof HTMLElement) return singleSpaRoot;
+
+  const fallback = document.createElement("div");
+  fallback.id = "app";
+  document.body.appendChild(fallback);
+  return fallback;
+};
+
 const lifecycles = singleSpaVue({
   createApp: createVueApp,
+  domElementGetter: (props) => resolveMountTarget(props as Record<string, unknown>),
   appOptions: {
     render: () => h(App),
   },
-});
+} as any);
 
 const mountThemeToggle = (container?: Element | null) => {
   const target =
-    (container as HTMLElement | null) || (document.getElementById("app") as HTMLElement | null);
+    (container as HTMLElement | null) || resolveMountTarget();
   if (!target) return null;
-  const storageKey = "ds-theme:playground-vue";
-  initThemeMode(target, storageKey);
-  return ensureThemeToggle(target, "Toggle theme", { target, storageKey });
+  initThemeMode(document.documentElement, THEME_STORAGE_KEY);
+  return ensureThemeToggle(target, "Toggle theme", {
+    target: document.documentElement,
+    storageKey: THEME_STORAGE_KEY,
+  });
 };
 
 let themeCleanup: (() => void) | null = null;
